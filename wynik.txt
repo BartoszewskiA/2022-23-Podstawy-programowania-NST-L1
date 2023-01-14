@@ -1,0 +1,23 @@
+1) #include <iostream>
+2) #include <math.h>
+
+3) using namespace std;
+
+4) int main()
+5) {
+6)     int x, y;
+7)     cout << "x=";
+8)     cin >> x;
+9)     cout << "y=";
+10)     cin >> y;
+11)     if (y == 0)
+12)     {
+13)         double wynik = (double)x / y;
+14)         cout << x << "/" << y << "=" << wynik;
+15)     }
+16)     else
+17)     {
+18)         cout << "nie dziel przez zero";
+19)     }
+20)     return 0;
+21) }
