@@ -24,6 +24,7 @@ void rysuj_plansze(bool odkryte);
 void strzal(string wiersz, int kolumna);
 void sprawdz_sasiednie(int w, int k);
 bool czy_koniec();
+bool kolizja(int w, int k);
 
 int main()
 {
@@ -137,4 +138,32 @@ bool czy_koniec()
             if (plansza[i][j] == 7 || plansza[i][j] == 2)
                 return false;
     return true;
+}
+
+bool kolizja(int w, int k)
+{
+    if (plansza[w][k] == 7)
+        return true;
+
+    if (w < 0 || w > 9 || k < 0 || k > 9)
+        return true;
+
+    if (w > 0 && plansza[w - 1][k] == 7)
+        return true;
+
+    if (w < 9 && plansza[w + 1][k] != 0)
+        return true;
+    if (k > 0 && plansza[w][k - 1] != 0)
+        return true;
+    if (k < 9 && plansza[w][k + 1] != 0)
+        return true;
+    if (w > 0 && k > 0 && plansza[w - 1][k - 1] != 0)
+        return true;
+    if (w > 0 && k < 9 && plansza[w - 1][k + 1] != 0)
+        return true;
+    if (w < 9 && k > 0 && plansza[w + 1][k - 1] != 0)
+        return true;
+    if (w < 9 && k < 9 && plansza[w + 1][k + 1] != 0)
+        return true;
+    return false;
 }
