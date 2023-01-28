@@ -25,8 +25,9 @@ void strzal(string wiersz, int kolumna);
 void sprawdz_sasiednie(int w, int k);
 bool czy_koniec();
 bool kolizja(int w, int k);
+bool wstaw_statek_3(int w, int k, int kierunek); // kierunek=0 - poziomo; kierunek=1 - pionowo
 
-int main()
+    int main()
 {
     int kolumna;
     string wiersz;
@@ -151,7 +152,7 @@ bool kolizja(int w, int k)
     if (w > 0 && plansza[w - 1][k] == 7)
         return true;
 
-    if (w < 9 && plansza[w + 1][k] != 0)
+    if (w < 9 && plansza[w + 1][k] ==7)
         return true;
     if (k > 0 && plansza[w][k - 1] != 0)
         return true;
@@ -165,5 +166,24 @@ bool kolizja(int w, int k)
         return true;
     if (w < 9 && k < 9 && plansza[w + 1][k + 1] != 0)
         return true;
+    return false;
+}
+
+bool wstaw_statek_3(int w, int k, int kierunek) // kierunek=0 - poziomo; kierunek=1 - pionowo
+{
+    if (kierunek == 0 && !kolizja(w, k) && !kolizja(w, k + 1) && !kolizja(w, k + 2))
+    {
+        plansza[w][k] = 7;
+        plansza[w][k + 1] = 7;
+        plansza[w][k + 2] = 7;
+        return true;
+    }
+    if (kierunek == 1 && !kolizja(w, k) && !kolizja(w + 1, k) && !kolizja(w + 2, k))
+    {
+        plansza[w][k] = 7;
+        plansza[w + 1][k] = 7;
+        plansza[w + 2][k] = 7;
+        return true;
+    }
     return false;
 }
